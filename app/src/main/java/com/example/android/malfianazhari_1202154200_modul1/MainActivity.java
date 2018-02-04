@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -34,18 +35,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId() == btn_abnormal.getId()){
-            Intent intent = new Intent(this,SecondActivity.class);
-            intent.putExtra("nama_restoran", btn_abnormal.getText());
-            intent.putExtra("porsi", porsi.getText().toString());
-            intent.putExtra("menu", menu.getText().toString());
-            startActivity(intent);
+            if ((menu.getText().toString().matches(""))||porsi.getText().toString().matches("")){
+                Toast.makeText(this, "Isi dulu", Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent = new Intent(this,SecondActivity.class);
+                intent.putExtra("nama_restoran", btn_abnormal.getText());
+                intent.putExtra("porsi", porsi.getText().toString());
+                intent.putExtra("menu", menu.getText().toString());
+                startActivity(intent);
+            }
+
 
         } else if(view.getId() == btn_eatbus.getId()){
-            Intent intent = new Intent(this,SecondActivity.class);
-            intent.putExtra("nama_restoran", btn_eatbus.getText());
-            intent.putExtra("porsi", porsi.getText().toString());
-            intent.putExtra("menu", menu.getText().toString());
-            startActivity(intent);
+            if ((menu.getText().toString().matches(""))||porsi.getText().toString().matches("")){
+                Toast.makeText(this, "Isi dulu ", Toast.LENGTH_SHORT).show();
+            }else {
+                Intent intent = new Intent(this, SecondActivity.class);
+                intent.putExtra("nama_restoran", btn_eatbus.getText());
+                intent.putExtra("porsi", porsi.getText().toString());
+                intent.putExtra("menu", menu.getText().toString());
+                startActivity(intent);
+                }
+
         }
     }
 }
